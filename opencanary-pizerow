@@ -1,0 +1,41 @@
+Installing Opencanary onto a Raspberry Pi Zero W
+================================================
+
+Download Raspberry PiOS Lite
+Burn to 8gb+ SD card with BalenaEtcher or similar
+Setup Wifi via wpa_supplicant and enable ssh as normal.
+
+--Change the root password
+sudo passwd
+
+--Login as root
+su
+
+--Update and install required packages
+apt update
+apt upgrade -y
+apt-get install python-dev python-pip
+apt-get install -y build-essential libssl-dev libffi-dev
+
+--Install python dependencies
+pip install --upgrade 'setuptools<45.0.0'
+pip install rdpy
+pip install opencanary
+
+--Create the conf file
+--note:opencanary has a problem reading the file in its default location, so we move it to /etc/opencanaryd. It will look there as a fallback.
+opencanaryd --copyconfig
+mkdir /etc/opencanaryd
+mv ~/.opencanary.conf /etc/opencanaryd/opencanary.conf
+
+--Configure email
+--go here https://opencanary.readthedocs.io/en/latest/alerts/email.html
+
+
+--Controlling OpenCanary
+--starting opencanaryd --start
+--stop opencanaryd --stop
+
+
+
+
