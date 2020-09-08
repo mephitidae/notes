@@ -1,0 +1,8 @@
+Disable Wifi
+
+Find in /boot/config.txt
+# Additional overlays and parameters are documented /boot/overlays/README
+
+And add these two lines under it:
+dtoverlay=disable-wifi
+dtoverlay=disable-bt
